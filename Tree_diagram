@@ -1,0 +1,149 @@
+BEFORE :
+
+├── device
+│   └── sony
+│       ├── common
+│       │   └── hardware
+│       └── kagura
+│           └── device.mk
+├── frameworks
+│   └── base
+│       ├── Android.bp
+│       └── services
+│           ├── core
+│           │   ├── Android.bp
+│           │   └── jni
+│           │       ├── Android.bp
+│           │       └── onload.cpp
+│           └── java
+│               └── com
+│                   └── android
+│                       └── server
+│                           └── SystemServer.java
+├── hardware
+│   └── interfaces
+├── kernel
+│   └── sony
+│       └── msm-4.9
+│           └── kernel
+│               ├── arch
+│               │   └── arm64
+│               │       └── configs
+│               │           └── aosp_tone_kagura_defconfig
+│               └── drivers
+│                   ├── Kconfig
+│                   └── Makefile
+└── packages
+    └── apps
+
+
+AFTER :
+
+├── device
+│   └── sony
+│       ├── common
+│       │   └── hardware
+│       │       └── hvuleds
+│       │           ├── android.hardware.hvuleds@2.0-service.sony.rc
+│       │           ├── Android.mk
+│       │           ├── Hvuleds.cpp
+│       │           ├── Hvuleds.h
+│       │           └── service.cpp
+│       └── kagura
+│           └── device.mk
+├── frameworks
+│   └── base
+│       ├── Android.bp
+│       ├── core
+│       │   └── java
+│       │       └── android
+│       │           └── os
+│       │               ├── HvuledsManager.java
+│       │               └── IHvuledsService.aidl
+│       └── services
+│           ├── core
+│           │   ├── Android.bp
+│           │   ├── java
+│           │   │   └── com
+│           │   │       └── android
+│           │   │           └── server
+│           │   │               └── HvuledsService.java
+│           │   └── jni
+│           │       ├── Android.bp
+│           │       ├── com_android_server_hvuleds_HvuledsService.cpp
+│           │       └── onload.cpp
+│           └── java
+│               └── com
+│                   └── android
+│                       └── server
+│                           └── SystemServer.java
+├── hardware
+│   └── interfaces
+│       └── hvuleds
+│           └── 2.0
+│               ├── Android.bp
+│               ├── default
+│               │   ├── Android.bp
+│               │   ├── Hvuleds.cpp
+│               │   └── Hvuleds.h
+│               ├── IHvuleds.hal
+│               └── types.hal
+├── kernel
+│   └── sony
+│       └── msm-4.9
+│           └── kernel
+│               ├── arch
+│               │   └── arm64
+│               │       └── configs
+│               │           └── aosp_tone_kagura_defconfig
+│               └── drivers
+│                   ├── hvuleds
+│                   │   ├── Kconfig
+│                   │   ├── leds-hvu.c
+│                   │   └── Makefile
+│                   ├── Kconfig
+│                   └── Makefile
+└── packages
+    └── apps
+        └── HVUapp
+            ├── AndroidManifest.xml
+            ├── Android.mk
+            ├── ic_launcher-playstore.png
+            ├── res
+            │   ├── drawable
+            │   │   └── ic_launcher_background.xml
+            │   ├── drawable-v24
+            │   │   └── ic_launcher_foreground.xml
+            │   ├── layout
+            │   │   └── activity_main.xml
+            │   ├── mipmap-anydpi-v26
+            │   │   ├── ic_launcher_round.xml
+            │   │   └── ic_launcher.xml
+            │   ├── mipmap-hdpi
+            │   │   ├── ic_launcher_foreground.png
+            │   │   ├── ic_launcher.png
+            │   │   └── ic_launcher_round.png
+            │   ├── mipmap-mdpi
+            │   │   ├── ic_launcher_foreground.png
+            │   │   ├── ic_launcher.png
+            │   │   └── ic_launcher_round.png
+            │   ├── mipmap-xhdpi
+            │   │   ├── ic_launcher_foreground.png
+            │   │   ├── ic_launcher.png
+            │   │   └── ic_launcher_round.png
+            │   ├── mipmap-xxhdpi
+            │   │   ├── ic_launcher_foreground.png
+            │   │   ├── ic_launcher.png
+            │   │   └── ic_launcher_round.png
+            │   ├── mipmap-xxxhdpi
+            │   │   ├── ic_launcher_foreground.png
+            │   │   ├── ic_launcher.png
+            │   │   └── ic_launcher_round.png
+            │   └── values
+            │       ├── colors.xml
+            │       └── strings.xml
+            └── src
+                └── com
+                    └── hvu
+                        └── hvuapp
+                            └── MainActivity.java

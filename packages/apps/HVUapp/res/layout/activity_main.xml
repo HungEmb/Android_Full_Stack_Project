@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:text="RED"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:id="@+id/seekBarRED"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:thumbTint="#FF0000"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:text="GREEN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:id="@+id/seekBarGREEN"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:thumbTint="#00FF00"
+        android:layout_margin="15dp" />
+
+    <TextView
+        android:text="BLUE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <SeekBar
+        android:id="@+id/seekBarBLUE"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:thumbTint="#0000FF"
+        android:layout_margin="15dp" />
+
+    <TextView
+        android:text="@string/hvu_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

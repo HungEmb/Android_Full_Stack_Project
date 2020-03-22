@@ -214,4 +214,6 @@ source "drivers/tee/Kconfig"
 
 source "drivers/cpuquiet/Kconfig"
 
+source "drivers/hvuleds/Kconfig"
+
 endmenu

@@ -17,6 +17,10 @@ DEVICE_PATH := device/sony/kagura/rootdir
 
 WIFI_DRIVER_BUILT := brcmfmac
 
+PRODUCT_PACKAGES += \
+    HVUapp \
+    android.hardware.hvuleds@2.0-service.sony \
+
 DEVICE_PACKAGE_OVERLAYS += \
     device/sony/kagura/overlay
 

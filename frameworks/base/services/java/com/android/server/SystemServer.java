@@ -82,6 +82,7 @@ import com.android.server.input.InputManagerService;
 import com.android.server.job.JobSchedulerService;
 import com.android.server.lights.LightsService;
 import com.android.server.HvuledsService; //HVU
+import com.android.server.HvuledsService;
 import com.android.server.media.MediaResourceMonitorService;
 import com.android.server.media.MediaRouterService;
 import com.android.server.media.MediaUpdateService;
@@ -738,6 +739,7 @@ public final class SystemServer {
      */
     private void startOtherServices() {
         final Context context = mSystemContext;
+        HvuledsService hvuleds = null;
         VibratorService vibrator = null;
         IStorageManager storageManager = null;
         NetworkManagementService networkManagement = null;
@@ -796,6 +798,11 @@ public final class SystemServer {
                     Slog.e(TAG, "Exception preloading default resources", ex);
                 }
             }, SECONDARY_ZYGOTE_PRELOAD);
+
+            traceBeginAndSlog("StartHvuledsService");
+            hvuleds = new HvuledsService(context);
+            ServiceManager.addService("hvuleds", hvuleds);
+            traceEnd();
 
             traceBeginAndSlog("StartKeyAttestationApplicationIdProviderService");
             ServiceManager.addService("sec_key_att_app_id_provider",

@@ -1,0 +1,7 @@
+config HVU_LEDS_DRIVER
+tristate "HVU LEDs Driver"
+depends on ARM64
+default m
+help
+HungVu LEDs driver
+

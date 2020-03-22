@@ -24,6 +24,7 @@ java_library_static {
     libs: [
         "services.net",
         "android.hardware.light-V2.0-java",
+        "android.hardware.hvuleds-V2.0-java",
         "android.hardware.power-V1.0-java",
         "android.hardware.tv.cec-V1.0-java",
         "android.hidl.manager-V1.0-java",

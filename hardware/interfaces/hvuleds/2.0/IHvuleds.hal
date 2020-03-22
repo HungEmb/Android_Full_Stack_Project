@@ -1,0 +1,9 @@
+/*
+ * Written by HungVu<hungvu98.hust@gmail.com> in March, 2020
+ */
+
+package android.hardware.hvuleds@2.0;
+
+interface IHvuleds {
+	setLeds(Led led, int32_t intensity) generates (Status status);
+};	
