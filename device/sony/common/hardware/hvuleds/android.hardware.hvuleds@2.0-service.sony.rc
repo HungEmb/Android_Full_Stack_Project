@@ -3,5 +3,4 @@ service vendor.hvuleds-hal-2-0 /vendor/bin/hw/android.hardware.hvuleds@2.0-servi
     class hal
     user root
     group root
-    seclabel u:r:su:s0
     shutdown critical

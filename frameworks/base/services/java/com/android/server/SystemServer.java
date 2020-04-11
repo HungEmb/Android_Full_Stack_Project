@@ -81,8 +81,6 @@ import com.android.server.hdmi.HdmiControlService;
 import com.android.server.input.InputManagerService;
 import com.android.server.job.JobSchedulerService;
 import com.android.server.lights.LightsService;
-import com.android.server.HvuledsService; //HVU
-import com.android.server.HvuledsService;
 import com.android.server.media.MediaResourceMonitorService;
 import com.android.server.media.MediaRouterService;
 import com.android.server.media.MediaUpdateService;
@@ -124,6 +122,10 @@ import com.android.server.usage.UsageStatsService;
 import com.android.server.vr.VrManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.WindowManagerService;
+/*** hvu-aosp ***/
+import com.android.server.HvuledsService;
+/****************/
+
 
 import dalvik.system.VMRuntime;
 
@@ -739,7 +741,9 @@ public final class SystemServer {
      */
     private void startOtherServices() {
         final Context context = mSystemContext;
+        /*** hvu-aosp ***/
         HvuledsService hvuleds = null;
+        /****************/
         VibratorService vibrator = null;
         IStorageManager storageManager = null;
         NetworkManagementService networkManagement = null;
@@ -798,11 +802,13 @@ public final class SystemServer {
                     Slog.e(TAG, "Exception preloading default resources", ex);
                 }
             }, SECONDARY_ZYGOTE_PRELOAD);
-
+            
+            /*** hvu-aosp ***/
             traceBeginAndSlog("StartHvuledsService");
             hvuleds = new HvuledsService(context);
             ServiceManager.addService("hvuleds", hvuleds);
             traceEnd();
+            /****************/
 
             traceBeginAndSlog("StartKeyAttestationApplicationIdProviderService");
             ServiceManager.addService("sec_key_att_app_id_provider",
