@@ -1,0 +1,25 @@
+type hal_hvuleds_default, domain;
+
+typeattribute hal_hvuleds_default halserverdomain;
+typeattribute hal_hvuleds_default hal_light_server;
+typeattribute hal_hvuleds_default hal_light;
+
+type hal_hvuleds_default_exec, exec_type, vendor_file_type, file_type;
+
+# Old domain may exec the file and transition to the new domain.
+allow init hal_hvuleds_default_exec:file { getattr open read execute map };
+allow init hal_hvuleds_default:process transition;
+
+# New domain is entered by executing the file.
+allow hal_hvuleds_default hal_hvuleds_default_exec:file { entrypoint open read execute getattr map };
+
+# New domain can send SIGCHLD to its caller.
+ifelse(init, `init', `', `allow hal_hvuleds_default init:process sigchld;')
+
+# Enable AT_SECURE, i.e. libc secure mode.
+dontaudit init hal_hvuleds_default:process noatsecure;
+
+# XXX dontaudit candidate but requires further study.
+allow init hal_hvuleds_default:process { siginh rlimitinh };
+
+type_transition init hal_hvuleds_default_exec:process hal_hvuleds_default;

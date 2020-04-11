@@ -214,6 +214,8 @@ source "drivers/tee/Kconfig"
 
 source "drivers/cpuquiet/Kconfig"
 
+### hvu-aosp ###
 source "drivers/hvuleds/Kconfig"
+################
 
 endmenu

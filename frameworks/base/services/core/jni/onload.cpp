@@ -23,6 +23,9 @@
 #include "BroadcastRadio/Tuner.h"
 
 namespace android {
+/*** hvu-aosp ***/
+int register_android_server_HvuledsService(JNIEnv* env);
+/****************/
 int register_android_server_AlarmManagerService(JNIEnv* env);
 int register_android_server_BatteryStatsService(JNIEnv* env);
 int register_android_server_ConsumerIrService(JNIEnv *env);
@@ -30,7 +33,6 @@ int register_android_server_InputApplicationHandle(JNIEnv* env);
 int register_android_server_InputWindowHandle(JNIEnv* env);
 int register_android_server_InputManager(JNIEnv* env);
 int register_android_server_LightsService(JNIEnv* env);
-int register_android_server_HvuledsService(JNIEnv* env);
 int register_android_server_PowerManagerService(JNIEnv* env);
 int register_android_server_storage_AppFuse(JNIEnv* env);
 int register_android_server_SerialService(JNIEnv* env);
@@ -72,7 +74,9 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* /* reserved */)
         return result;
     }
     ALOG_ASSERT(env, "Could not retrieve the env!");
-
+    /*** hvu-aosp ***/
+    register_android_server_HvuledsService(env);
+    /****************/
     register_android_server_broadcastradio_BroadcastRadioService(env);
     register_android_server_broadcastradio_Tuner(vm, env);
     register_android_server_PowerManagerService(env);
@@ -81,7 +85,6 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* /* reserved */)
     register_android_server_InputWindowHandle(env);
     register_android_server_InputManager(env);
     register_android_server_LightsService(env);
-    register_android_server_HvuledsService(env);
     register_android_server_AlarmManagerService(env);
     register_android_server_UsbDeviceManager(env);
     register_android_server_UsbMidiDevice(env);
