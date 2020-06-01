@@ -21,7 +21,8 @@ WIFI_DRIVER_BUILT := brcmfmac
 PRODUCT_PACKAGES += \
     HVUapp \
     hvuleds-test \
-    android.hardware.hvuleds@2.0-service.sony \
+    android.hardware.hvuleds@2.0-service \
+    android.hardware.hvuleds@2.0-impl \
 ################
 
 DEVICE_PACKAGE_OVERLAYS += \

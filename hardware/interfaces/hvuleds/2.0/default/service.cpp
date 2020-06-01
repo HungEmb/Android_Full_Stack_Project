@@ -1,8 +1,8 @@
 /*
- * Written by HungVu<hungvu98.hust@gmail.com> in March, 2020
+ * Written by HungVu<hungvu98.hust@gmail.com> in May, 2020
  */
 
-#define LOG_TAG "android.hardware.hvuleds@2.0-service.sony"
+#define LOG_TAG "android.hardware.hvuleds@2.0-service"
 
 #include <hidl/HidlSupport.h>
 #include <hidl/HidlTransportSupport.h>

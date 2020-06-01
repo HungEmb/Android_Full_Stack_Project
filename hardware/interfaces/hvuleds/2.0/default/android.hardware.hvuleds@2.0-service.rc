@@ -1,4 +1,4 @@
-service vendor.hvuleds-hal-2-0 /vendor/bin/hw/android.hardware.hvuleds@2.0-service.sony
+service vendor.hvuleds-hal-2-0 /vendor/bin/hw/android.hardware.hvuleds@2.0-service
     interface android.hardware.hvuleds@2.0::IHvuleds default
     class hal
     user root
