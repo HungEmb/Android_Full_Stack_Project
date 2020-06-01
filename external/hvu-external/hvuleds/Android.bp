@@ -1,0 +1,14 @@
+cc_binary {
+    name: "hvuleds-test",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+    srcs: ["hvuleds-test.cpp"],
+    cflags: ["-Wno-unused-parameter"],
+    shared_libs: [
+        "android.hardware.hvuleds@2.0",
+        "libhidlbase",
+        "libhidltransport",
+        "liblog",
+        "libutils",
+    ],
+}

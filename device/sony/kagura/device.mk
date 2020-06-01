@@ -20,6 +20,7 @@ WIFI_DRIVER_BUILT := brcmfmac
 ### hvu-aosp ###
 PRODUCT_PACKAGES += \
     HVUapp \
+    hvuleds-test \
     android.hardware.hvuleds@2.0-service.sony \
 ################
 

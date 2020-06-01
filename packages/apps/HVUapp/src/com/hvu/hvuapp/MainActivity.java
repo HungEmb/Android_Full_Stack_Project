@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 import android.util.Log;
 import android.os.ServiceManager;
+import android.content.Context;
 
-import android.os.IHvuledsService;
+import android.os.HvuledsManager;
+import android.hardware.hvuleds.V2_0.Led;
 
 public class MainActivity extends Activity {
     private static final String DTAG = "HVUapp";
-    private IHvuledsService oHVU = null;
+    private HvuledsManager mHvuledsManager;
 
     private SeekBar seekBarRED;
     private SeekBar seekBarGREEN;
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        oHVU = IHvuledsService.Stub.asInterface(ServiceManager.getService("hvuleds"));
+        mHvuledsManager = (HvuledsManager) getSystemService(Context.HVULEDS_SERVICE);
 
         seekBarRED = (SeekBar) findViewById(R.id.seekBarRED);
         seekBarRED.setMax(255);
@@ -33,11 +35,15 @@ public class MainActivity extends Activity {
         seekBarBLUE.setMax(255);
 
         seekBarRED.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        int valRED = 0;
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                valRED = progress;
+                try {
+                    mHvuledsManager.setLedBrightness(Led.RED, progress);
+                }
+                catch (Exception e) {
+                    Log.d(DTAG, "FAILED to call service");
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -47,23 +53,20 @@ public class MainActivity extends Activity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                try {
-                    Log.d(DTAG, "Adjusting brightness off led RED");
-                    oHVU.setLed(0, valRED);
-                }
-                catch (Exception e) {
-                    Log.d(DTAG, "FAILED to call service");
-                    e.printStackTrace();
-                }
+                Log.d(DTAG, "Adjusted brightness off led RED");
             }
         });
 
         seekBarGREEN.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int valGREEN = 0;
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                valGREEN = progress;
+                try {
+                    mHvuledsManager.setLedBrightness(Led.GREEN, progress);
+                }
+                catch (Exception e) {
+                    Log.d(DTAG, "FAILED to call service");
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -73,42 +76,30 @@ public class MainActivity extends Activity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                try {
-                    Log.d(DTAG, "Adjusting brightness off led GREEN");
-                    oHVU.setLed(1, valGREEN);
-                }
-                catch (Exception e) {
-                    Log.d(DTAG, "FAILED to call service");
-                    e.printStackTrace();
-                }
+                Log.d(DTAG, "Adjusted brightness off led GREEN");
             }
         });
 
         seekBarBLUE.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int valBLUE = 0;
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                valBLUE = progress;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 try {
-                    Log.d(DTAG, "Adjusting brightness off led BLUE");
-                    oHVU.setLed(2, valBLUE);
+                    mHvuledsManager.setLedBrightness(Led.BLUE, progress);
                 }
                 catch (Exception e) {
                     Log.d(DTAG, "FAILED to call service");
                     e.printStackTrace();
                 }
+            }
 
-           }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.d(DTAG, "Adjusted brightness off led BLUE");
+            }
         });
 
     }
